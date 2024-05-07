@@ -1,0 +1,129 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://media/spells.png" type="Texture" id=1]
+[ext_resource path="res://navdi/Node Scripts/NavdiBanker.gd" type="Script" id=2]
+[ext_resource path="res://navdi/Node Scripts/NavdiSettings.gd" type="Script" id=3]
+[ext_resource path="res://wiz.tscn" type="PackedScene" id=4]
+[ext_resource path="res://roomman.gd" type="Script" id=5]
+[ext_resource path="res://beam.gd" type="Script" id=6]
+[ext_resource path="res://navdi/Node Scripts/Pin/PinController.gd" type="Script" id=7]
+[ext_resource path="res://media/spells10.png" type="Texture" id=8]
+[ext_resource path="res://spellman.gd" type="Script" id=9]
+[ext_resource path="res://pop.gd" type="Script" id=10]
+[ext_resource path="res://media/spells-sheet.tres" type="Resource" id=11]
+[ext_resource path="res://navdi/Node Scripts/Sheet/SheetSprite.gd" type="Script" id=12]
+[ext_resource path="res://rooms/room_prison.tscn" type="PackedScene" id=13]
+[ext_resource path="res://magic_block.gd" type="Script" id=14]
+[ext_resource path="res://WizardXXI.gd" type="Script" id=15]
+
+[sub_resource type="Curve" id=3]
+max_value = 2.0
+_data = [ Vector2( 0, 2 ), 0.0, -1.75369, 0, 0, Vector2( 0.115294, 1.00516 ), 0.0, 0.0, 0, 0, Vector2( 0.990588, 0.0233409 ), -0.753881, 0.0, 0, 0 ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 5, 5 )
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.865922, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 0.5 )
+
+[node name="XXI" type="Node2D"]
+script = ExtResource( 15 )
+
+[node name="pincontroller" type="Node" parent="." groups=["pincontroller"]]
+script = ExtResource( 7 )
+
+[node name="settings" type="Node" parent="."]
+script = ExtResource( 3 )
+width = 180
+height = 180
+bg_color = Color( 0.27451, 0.101961, 0.439216, 1 )
+project_month = "May"
+project_day = "7"
+project_name = "spells"
+project_icon = ExtResource( 8 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+position = Vector2( -1, 0 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="spellman" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="spellbank" type="Node" parent="spellman"]
+script = ExtResource( 2 )
+
+[node name="beam" type="Area2D" parent="spellman/spellbank"]
+position = Vector2( 44, 79 )
+script = ExtResource( 6 )
+
+[node name="beamscale" type="Node2D" parent="spellman/spellbank/beam"]
+
+[node name="ColorRect" type="ColorRect" parent="spellman/spellbank/beam/beamscale"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 1, 0.65098, 0.572549, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spellman/spellbank/beam"]
+
+[node name="pop" type="Node2D" parent="spellman/spellbank"]
+position = Vector2( 14, 135 )
+z_index = 100
+script = ExtResource( 10 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="spellman/spellbank/pop"]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 5 )
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 30 )
+initial_velocity = 25.0
+initial_velocity_random = 0.7
+scale_amount = 3.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 3 )
+color = Color( 1, 0.65098, 0.572549, 1 )
+
+[node name="magic_block" type="StaticBody2D" parent="spellman/spellbank"]
+script = ExtResource( 14 )
+
+[node name="SheetSprite" type="Sprite" parent="spellman/spellbank/magic_block"]
+texture = ExtResource( 1 )
+hframes = 10
+vframes = 10
+frame = 6
+script = ExtResource( 12 )
+sprite_sheet = ExtResource( 11 )
+_frames = [ 6 ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spellman/spellbank/magic_block"]
+shape = SubResource( 4 )
+
+[node name="wiz" parent="." instance=ExtResource( 4 )]
+position = Vector2( 21, 135 )
+
+[node name="Light2D" type="Light2D" parent="wiz"]
+visible = false
+texture = SubResource( 2 )
+mode = 2
+shadow_color = Color( 1, 1, 1, 1 )
+
+[node name="roomman" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="room" parent="roomman" instance=ExtResource( 13 )]
+
+[node name="magicfx" type="Node2D" parent="."]
