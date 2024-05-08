@@ -1,0 +1,198 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://media/spells.png" type="Texture" id=1]
+[ext_resource path="res://navdi/Node Scripts/NavdiBanker.gd" type="Script" id=2]
+[ext_resource path="res://navdi/Node Scripts/NavdiSettings.gd" type="Script" id=3]
+[ext_resource path="res://wiz_stuff/core/wiz.tscn" type="PackedScene" id=4]
+[ext_resource path="res://wiz_stuff/rooms-n-levels/roomman.gd" type="Script" id=5]
+[ext_resource path="res://wiz_stuff/spell-stuff/beam.gd" type="Script" id=6]
+[ext_resource path="res://navdi/Node Scripts/Pin/PinController.gd" type="Script" id=7]
+[ext_resource path="res://media/spells10.png" type="Texture" id=8]
+[ext_resource path="res://wiz_stuff/spell-stuff/spellman.gd" type="Script" id=9]
+[ext_resource path="res://wiz_stuff/spell-stuff/pop.gd" type="Script" id=10]
+[ext_resource path="res://media/spells-sheet.tres" type="Resource" id=11]
+[ext_resource path="res://navdi/Node Scripts/Sheet/SheetSprite.gd" type="Script" id=12]
+[ext_resource path="res://rooms/castl1/castle1_csstart.tscn" type="PackedScene" id=13]
+[ext_resource path="res://wiz_stuff/spell-stuff/magic_block.gd" type="Script" id=14]
+[ext_resource path="res://wiz_stuff/core/WizardXXI.gd" type="Script" id=15]
+[ext_resource path="res://navdi/Resources/fonts/tallten.tres" type="DynamicFont" id=16]
+[ext_resource path="res://navdi/Node Scripts/Convo/MarchingTextContainer.gd" type="Script" id=17]
+[ext_resource path="res://wiz_stuff/core/textbox_ctr.gd" type="Script" id=18]
+
+[sub_resource type="Curve" id=3]
+max_value = 2.0
+_data = [ Vector2( 0, 2 ), 0.0, -1.75369, 0, 0, Vector2( 0.115294, 1.00516 ), 0.0, 0.0, 0, 0, Vector2( 0.990588, 0.0233409 ), -0.753881, 0.0, 0, 0 ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 5, 5 )
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.865922, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 0.5 )
+
+[node name="XXI" type="Node2D"]
+script = ExtResource( 15 )
+
+[node name="pincontroller" type="Node" parent="." groups=["pincontroller"]]
+script = ExtResource( 7 )
+
+[node name="settings" type="Node" parent="."]
+script = ExtResource( 3 )
+width = 180
+height = 180
+bg_color = Color( 0.27451, 0.101961, 0.439216, 1 )
+project_month = "May"
+project_day = "8"
+project_name = "more spells"
+project_icon = ExtResource( 8 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+position = Vector2( -1, 0 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="spellman" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="spellbank" type="Node" parent="spellman"]
+script = ExtResource( 2 )
+
+[node name="beam" type="Area2D" parent="spellman/spellbank"]
+position = Vector2( -76, 32 )
+script = ExtResource( 6 )
+
+[node name="beamscale" type="Node2D" parent="spellman/spellbank/beam"]
+
+[node name="ColorRect" type="ColorRect" parent="spellman/spellbank/beam/beamscale"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 1, 0.65098, 0.572549, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spellman/spellbank/beam"]
+
+[node name="pop" type="Node2D" parent="spellman/spellbank"]
+position = Vector2( -72, 87 )
+z_index = 100
+script = ExtResource( 10 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="spellman/spellbank/pop"]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 5 )
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 30 )
+initial_velocity = 25.0
+initial_velocity_random = 0.7
+scale_amount = 3.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 3 )
+color = Color( 1, 0.65098, 0.572549, 1 )
+
+[node name="magic_block" type="StaticBody2D" parent="spellman/spellbank"]
+position = Vector2( -62, 18 )
+script = ExtResource( 14 )
+
+[node name="SheetSprite" type="Sprite" parent="spellman/spellbank/magic_block"]
+texture = ExtResource( 1 )
+hframes = 10
+vframes = 10
+frame = 6
+script = ExtResource( 12 )
+sprite_sheet = ExtResource( 11 )
+_frames = [ 6 ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spellman/spellbank/magic_block"]
+shape = SubResource( 4 )
+
+[node name="wiz" parent="." instance=ExtResource( 4 )]
+position = Vector2( 95, 105 )
+
+[node name="Light2D" type="Light2D" parent="wiz"]
+visible = false
+texture = SubResource( 2 )
+mode = 2
+shadow_color = Color( 1, 1, 1, 1 )
+
+[node name="roomman" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="castle1_csstart" parent="roomman" instance=ExtResource( 13 )]
+
+[node name="magicfx" type="Node2D" parent="."]
+
+[node name="textbox_ctr" type="Node2D" parent="."]
+script = ExtResource( 18 )
+
+[node name="anchor_top" type="Position2D" parent="textbox_ctr"]
+position = Vector2( 90, 30 )
+
+[node name="anchor_middle" type="Position2D" parent="textbox_ctr"]
+position = Vector2( 90, 90 )
+
+[node name="anchor_bottom" type="Position2D" parent="textbox_ctr"]
+position = Vector2( 90, 150 )
+
+[node name="textbox" type="Node2D" parent="textbox_ctr"]
+position = Vector2( 90, 150 )
+
+[node name="m" type="MarginContainer" parent="textbox_ctr/textbox"]
+margin_left = -86.0
+margin_top = -26.0
+margin_right = 86.0
+margin_bottom = 26.0
+
+[node name="border" type="ColorRect" parent="textbox_ctr/textbox/m"]
+visible = false
+margin_right = 172.0
+margin_bottom = 52.0
+color = Color( 0.721569, 0.231373, 0.631373, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="textbox_ctr/textbox/m"]
+margin_right = 172.0
+margin_bottom = 52.0
+custom_constants/margin_right = 1
+custom_constants/margin_top = 1
+custom_constants/margin_left = 1
+custom_constants/margin_bottom = 1
+
+[node name="inner" type="ColorRect" parent="textbox_ctr/textbox/m/MarginContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 171.0
+margin_bottom = 51.0
+color = Color( 0.0627451, 0.0156863, 0.121569, 1 )
+
+[node name="MarchingTextContainer" type="MarginContainer" parent="textbox_ctr/textbox/m"]
+margin_right = 172.0
+margin_bottom = 52.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 6
+custom_constants/margin_left = 7
+custom_constants/margin_bottom = 2
+script = ExtResource( 17 )
+bbcode_text = "Here is a test... I wanted to be a little closer to you, but here in the badlands, I am forced to keep my distance. Can you find more than just that?"
+delay_per_char = 0.02
+
+[node name="RichTextLabel" type="RichTextLabel" parent="textbox_ctr/textbox/m/MarchingTextContainer"]
+margin_left = 7.0
+margin_top = 6.0
+margin_right = 172.0
+margin_bottom = 50.0
+custom_colors/default_color = Color( 1, 0.65098, 0.572549, 1 )
+custom_fonts/normal_font = ExtResource( 16 )
+bbcode_enabled = true
+bbcode_text = "Here is a test... I wanted to be a little closer to you, but here in the badlands, I am forced to keep my distance. Can you find more than just that?"
+text = "Here is a test... I wanted to be a little closer to you, but here in the badlands, I am forced to keep my distance. Can you find more than just that?"
+scroll_active = false

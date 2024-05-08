@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://navdi/Node Scripts/NavdiBanker.gd" type="Script" id=1]
+[ext_resource path="res://navdi/Node Scripts/Sheet/SheetSprite.gd" type="Script" id=2]
+[ext_resource path="res://media/spells.png" type="Texture" id=3]
+[ext_resource path="res://navdi/Resources/fonts/roughyFIVEbySIX.tres" type="DynamicFont" id=4]
+[ext_resource path="res://navdi/Node Scripts/Pin/Pin.gd" type="Script" id=5]
+[ext_resource path="res://wiz_stuff/core/wiz.gd" type="Script" id=6]
+[ext_resource path="res://media/spells-sheet.tres" type="Resource" id=7]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 2, 3 )
+
+[node name="wiz" type="KinematicBody2D"]
+position = Vector2( 25, 135 )
+z_index = 20
+collision_layer = 4
+script = ExtResource( 6 )
+
+[node name="SheetSprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 10
+vframes = 10
+frame = 10
+script = ExtResource( 2 )
+sprite_sheet = ExtResource( 7 )
+_frames = [ 10, 11 ]
+
+[node name="head" type="Node2D" parent="SheetSprite"]
+
+[node name="downpointer" type="Sprite" parent="SheetSprite/head"]
+texture = ExtResource( 3 )
+hframes = 10
+vframes = 10
+frame = 19
+script = ExtResource( 2 )
+sprite_sheet = ExtResource( 7 )
+_frames = [ 9, 19, 29, 19 ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2 )
+shape = SubResource( 4 )
+
+[node name="Pin" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="sigilbank" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="study" type="Node2D" parent="."]
+visible = false
+z_index = -19
+
+[node name="left" type="Node2D" parent="study"]
+visible = false
+position = Vector2( -5, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="study/left"]
+margin_left = -200.0
+margin_top = -200.0
+margin_bottom = 200.0
+color = Color( 0.27451, 0.101961, 0.439216, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="study/left"]
+margin_left = -200.0
+margin_top = -200.0
+margin_bottom = 200.0
+color = Color( 0.0627451, 0.0156863, 0.121569, 1 )
+
+[node name="right" type="Node2D" parent="study"]
+visible = false
+position = Vector2( 5, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="study/right"]
+margin_top = -200.0
+margin_right = 200.0
+margin_bottom = 200.0
+color = Color( 0.27451, 0.101961, 0.439216, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="study/right"]
+margin_top = -200.0
+margin_right = 200.0
+margin_bottom = 200.0
+color = Color( 0.0627451, 0.0156863, 0.121569, 1 )
+
+[node name="type" type="Node" parent="."]
+
+[node name="z" type="Node2D" parent="type"]
+z_index = 19
+
+[node name="input" type="Label" parent="type/z"]
+margin_left = -2.0
+margin_top = -10.0
+margin_right = 3.0
+margin_bottom = -4.0
+custom_colors/font_color = Color( 1, 0.65098, 0.572549, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "_"
+valign = 2
+
+[node name="ColorRect" type="ColorRect" parent="type/z/input"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_right = -1.0
+margin_bottom = -2.0
+color = Color( 0.0627451, 0.0156863, 0.121569, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="type/z/input"]
+visible = false
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_right = -1.0
+margin_bottom = -2.0
+color = Color( 0.27451, 0.101961, 0.439216, 1 )
