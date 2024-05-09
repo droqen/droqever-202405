@@ -169,6 +169,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://navdi/Node Scripts/PreviewGrid.gd"
 }, {
+"base": "Label",
+"class": "RewriteLabel",
+"language": "GDScript",
+"path": "res://text_interface/RewriteLabel.gd"
+}, {
 "base": "Resource",
 "class": "Sheet",
 "language": "GDScript",
@@ -178,6 +183,11 @@ _global_script_classes=[ {
 "class": "SheetSprite",
 "language": "GDScript",
 "path": "res://navdi/Node Scripts/Sheet/SheetSprite.gd"
+}, {
+"base": "Area2D",
+"class": "SpecialArea2D",
+"language": "GDScript",
+"path": "res://SpecialArea2D.gd"
 }, {
 "base": "Reference",
 "class": "TileZone",
@@ -237,8 +247,10 @@ _global_script_class_icons={
 "PinSetup": "",
 "PinStick": "",
 "PreviewGrid": "",
+"RewriteLabel": "",
 "Sheet": "",
 "SheetSprite": "",
+"SpecialArea2D": "",
 "TileZone": "",
 "TinyState": "",
 "ToolSpawnAssistant": "",
@@ -248,7 +260,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="2024, May 8: prose explorer."
+config/name="2024, May 9: prose explorer."
 run/main_scene="res://MainProseXXI.tscn"
 boot_splash/image="res://navdi/Resources/icon.png"
 boot_splash/fullsize=false

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://text_interface/RewriteLabel.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RewriteLabel" type="Label" parent="."]
+margin_left = 49.0
+margin_top = 54.0
+margin_right = 455.0
+margin_bottom = 85.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "OK, imagine this! You have a very long piece of text that you want to delete, but you aren't ready for it yet. Not just yet.
+So it's very long, lorem ipsum and all that, and suddenly it's being deleted. Goodbye, text! Say bye! And then it goes."
+autowrap = true
+script = ExtResource( 1 )
+goaltext = "OK, imagine this! You have a very long piece of text that you want to delete, but you aren't ready for it yet. Not just yet.
+
+Imagine this: We are on a long boat ride. You're on a boat. I'm on the boat with you. You're hungry. I'm hungry. We order a pizza and for the address we put \"boat.\" We laugh and laugh and laugh about it.
+
+Anyway, the end of this story is that we don't get the pizza and are quite hungry the whole rest of the boat ride."
