@@ -1,0 +1,305 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "BaseInteractionArea",
+"language": "GDScript",
+"path": "res://arcade/room_tools/BaseInteractionArea.gd"
+}, {
+"base": "Node",
+"class": "BasePantograph",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Panto/BasePantograph.gd"
+}, {
+"base": "Reference",
+"class": "Bounds",
+"language": "GDScript",
+"path": "res://navdi/Utility Scripts/Bounds.gd"
+}, {
+"base": "Reference",
+"class": "Bufs",
+"language": "GDScript",
+"path": "res://navdi/Utility Scripts/bufs.gd"
+}, {
+"base": "Reference",
+"class": "ChoiceStack",
+"language": "GDScript",
+"path": "res://navdi/Utility Scripts/ChoiceStack.gd"
+}, {
+"base": "Reference",
+"class": "LumpyDictionary",
+"language": "GDScript",
+"path": "res://navdi/Utility Scripts/LumpyDictionary.gd"
+}, {
+"base": "MarginContainer",
+"class": "MarchingTextContainer",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Convo/MarchingTextContainer.gd"
+}, {
+"base": "Reference",
+"class": "MazeObjectData",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Maze/MazeObjectData.gd"
+}, {
+"base": "Area2D",
+"class": "NavdiAreaSweeper",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/NavdiAreaSweeper.gd"
+}, {
+"base": "Node",
+"class": "NavdiBanker",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/NavdiBanker.gd"
+}, {
+"base": "Sprite",
+"class": "NavdiBitsySprite",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/NavdiBitsySprite.gd"
+}, {
+"base": "NavdiMazeMaster",
+"class": "NavdiFlagEditor",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Maze/FlagEditor/FlagEditor.gd"
+}, {
+"base": "NavdiMazeMaster",
+"class": "NavdiFlagMazeMaster",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Maze/FlagEditor/FlagMazeMaster.gd"
+}, {
+"base": "Node",
+"class": "NavdiFocuser",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/NavdiFocuser.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "NavdiJumper",
+"language": "GDScript",
+"path": "res://navdi/xUnsorted/NavdiJumper.gd"
+}, {
+"base": "RigidBody2D",
+"class": "NavdiMazeBody",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Maze/Body.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "NavdiMazeKineBody",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Maze/KineBody.gd"
+}, {
+"base": "Node",
+"class": "NavdiMazeLoaderTool",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Maze/^MazeLoaderTool.gd"
+}, {
+"base": "TileMap",
+"class": "NavdiMazeMaster",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Maze/MazeMaster.gd"
+}, {
+"base": "Node2D",
+"class": "NavdiMazeNobody",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Maze/Nobody.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "NavdiMovingGuy",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/NavdiMovingGuy.gd"
+}, {
+"base": "BasePantograph",
+"class": "NavdiPantograph",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Panto/NavdiPantograph.gd"
+}, {
+"base": "Node",
+"class": "NavdiSettings",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/NavdiSettings.gd"
+}, {
+"base": "Reference",
+"class": "NavdiTILEDLevelHandler",
+"language": "GDScript",
+"path": "res://navdi/Utility Scripts/NavdiTILEDLevelHandler.gd"
+}, {
+"base": "Node",
+"class": "NavdiXXI",
+"language": "GDScript",
+"path": "res://navdi/xUnsorted/NavdiXXI.gd"
+}, {
+"base": "NavdiPantograph",
+"class": "Panto_Linker",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Panto/Panto_Linker.gd"
+}, {
+"base": "Node",
+"class": "Pin",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Pin/Pin.gd"
+}, {
+"base": "Reference",
+"class": "PinButton",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Pin/PinButton.gd"
+}, {
+"base": "Node",
+"class": "PinController",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Pin/PinController.gd"
+}, {
+"base": "Node",
+"class": "PinInputSource",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Pin/PinInputSource.gd"
+}, {
+"base": "Node",
+"class": "PinSetup",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Pin/PinSetup.gd"
+}, {
+"base": "Reference",
+"class": "PinStick",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Pin/PinStick.gd"
+}, {
+"base": "Node2D",
+"class": "PreviewGrid",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/PreviewGrid.gd"
+}, {
+"base": "BaseInteractionArea",
+"class": "RoomPortal",
+"language": "GDScript",
+"path": "res://arcade/room_tools/RoomPortal.gd"
+}, {
+"base": "Resource",
+"class": "Sheet",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Sheet/Sheet.gd"
+}, {
+"base": "Sprite",
+"class": "SheetSprite",
+"language": "GDScript",
+"path": "res://navdi/Node Scripts/Sheet/SheetSprite.gd"
+}, {
+"base": "Reference",
+"class": "TileZone",
+"language": "GDScript",
+"path": "res://navdi/Utility Scripts/TileZone.gd"
+}, {
+"base": "Reference",
+"class": "TinyState",
+"language": "GDScript",
+"path": "res://navdi/Utility Scripts/tiny_state.gd"
+}, {
+"base": "Reference",
+"class": "ToolSpawnAssistant",
+"language": "GDScript",
+"path": "res://navdi/Utility Scripts/ToolSpawnAssistant.gd"
+}, {
+"base": "Container",
+"class": "ViewportWrapperContainer",
+"language": "GDScript",
+"path": "res://top_level/ViewportWrapperContainer.gd"
+}, {
+"base": "Reference",
+"class": "WeightedDeck",
+"language": "GDScript",
+"path": "res://navdi/Utility Scripts/WeightedDeck.gd"
+} ]
+_global_script_class_icons={
+"BaseInteractionArea": "",
+"BasePantograph": "",
+"Bounds": "",
+"Bufs": "",
+"ChoiceStack": "",
+"LumpyDictionary": "",
+"MarchingTextContainer": "",
+"MazeObjectData": "",
+"NavdiAreaSweeper": "",
+"NavdiBanker": "",
+"NavdiBitsySprite": "",
+"NavdiFlagEditor": "",
+"NavdiFlagMazeMaster": "",
+"NavdiFocuser": "",
+"NavdiJumper": "",
+"NavdiMazeBody": "",
+"NavdiMazeKineBody": "",
+"NavdiMazeLoaderTool": "",
+"NavdiMazeMaster": "",
+"NavdiMazeNobody": "",
+"NavdiMovingGuy": "",
+"NavdiPantograph": "",
+"NavdiSettings": "",
+"NavdiTILEDLevelHandler": "",
+"NavdiXXI": "",
+"Panto_Linker": "",
+"Pin": "",
+"PinButton": "",
+"PinController": "",
+"PinInputSource": "",
+"PinSetup": "",
+"PinStick": "",
+"PreviewGrid": "",
+"RoomPortal": "",
+"Sheet": "",
+"SheetSprite": "",
+"TileZone": "",
+"TinyState": "",
+"ToolSpawnAssistant": "",
+"ViewportWrapperContainer": "",
+"WeightedDeck": ""
+}
+
+[application]
+
+config/name="2024, May 9: DEMONDANCE."
+run/main_scene="res://DemonDanceXXI.tscn"
+boot_splash/image="res://navdi/Resources/icon.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0.270588, 0.0941176, 0.0941176, 1 )
+config/icon="res://navdi/Resources/icon.png"
+boot_splash/filter=false
+
+[autoload]
+
+ArcadeScreenUtils="*res://arcade/ArcadeScreenUtils.gd"
+
+[display]
+
+window/size/width=900
+window/size/height=500
+window/size/test_width=900
+window/size/test_height=500
+
+[dynamic_fonts]
+
+use_oversampling=false
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[network]
+
+limits/debugger_stdout/max_errors_per_frame=100
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.270588, 0.0941176, 0.0941176, 1 )
+quality/2d/use_pixel_snap=true
