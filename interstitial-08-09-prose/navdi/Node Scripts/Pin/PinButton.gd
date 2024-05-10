@@ -22,3 +22,9 @@ func clr():
 	held = false
 	pressed = false
 	released = false
+
+func append(other):
+	held = held or other.held
+	pressed = pressed or other.pressed
+	released = released or other.released
+	return self

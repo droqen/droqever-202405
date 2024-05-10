@@ -16,5 +16,5 @@ func _physics_process(_delta):
 		movst.goto(IDLE)
 	accel_velocity(stick.x * 0.5, stick.y * 0.5, 0.1, 0.1)
 	process_slidey_move()
-	position.x = clamp(position.x, 5, 195)
-	position.y = clamp(position.y, 5, 195)
+	ArcadeScreenUtils.keep_on_screen(self)
+	

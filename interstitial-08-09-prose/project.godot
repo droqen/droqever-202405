@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "BaseInteractionArea",
+"language": "GDScript",
+"path": "res://arcade/room_tools/BaseInteractionArea.gd"
+}, {
 "base": "Node",
 "class": "BasePantograph",
 "language": "GDScript",
@@ -28,6 +33,11 @@ _global_script_classes=[ {
 "class": "ChoiceStack",
 "language": "GDScript",
 "path": "res://navdi/Utility Scripts/ChoiceStack.gd"
+}, {
+"base": "Node2D",
+"class": "Dreamcatcher",
+"language": "GDScript",
+"path": "res://arcade/magic/Dreamcatcher.gd"
 }, {
 "base": "Reference",
 "class": "LumpyDictionary",
@@ -175,6 +185,16 @@ _global_script_classes=[ {
 "path": "res://text_interface/RewriteLabel.gd"
 }, {
 "base": "Resource",
+"class": "RewriteLabelColourPalette",
+"language": "GDScript",
+"path": "res://text_interface/RewriteLabelColourPalette.gd"
+}, {
+"base": "BaseInteractionArea",
+"class": "RoomPortal",
+"language": "GDScript",
+"path": "res://arcade/room_tools/RoomPortal.gd"
+}, {
+"base": "Resource",
 "class": "Sheet",
 "language": "GDScript",
 "path": "res://navdi/Node Scripts/Sheet/Sheet.gd"
@@ -187,7 +207,17 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "SpecialArea2D",
 "language": "GDScript",
-"path": "res://SpecialArea2D.gd"
+"path": "res://arcade/SpecialArea2D.gd"
+}, {
+"base": "Node2D",
+"class": "Spell",
+"language": "GDScript",
+"path": "res://arcade/magic/Spell.gd"
+}, {
+"base": "Node",
+"class": "SpellWord",
+"language": "GDScript",
+"path": "res://arcade/magic/SpellWord.gd"
 }, {
 "base": "Reference",
 "class": "TileZone",
@@ -207,7 +237,7 @@ _global_script_classes=[ {
 "base": "Container",
 "class": "ViewportWrapperContainer",
 "language": "GDScript",
-"path": "res://ViewportWrapperContainer.gd"
+"path": "res://top_level/ViewportWrapperContainer.gd"
 }, {
 "base": "Reference",
 "class": "WeightedDeck",
@@ -215,10 +245,12 @@ _global_script_classes=[ {
 "path": "res://navdi/Utility Scripts/WeightedDeck.gd"
 } ]
 _global_script_class_icons={
+"BaseInteractionArea": "",
 "BasePantograph": "",
 "Bounds": "",
 "Bufs": "",
 "ChoiceStack": "",
+"Dreamcatcher": "",
 "LumpyDictionary": "",
 "MarchingTextContainer": "",
 "MazeObjectData": "",
@@ -248,9 +280,13 @@ _global_script_class_icons={
 "PinStick": "",
 "PreviewGrid": "",
 "RewriteLabel": "",
+"RewriteLabelColourPalette": "",
+"RoomPortal": "",
 "Sheet": "",
 "SheetSprite": "",
 "SpecialArea2D": "",
+"Spell": "",
+"SpellWord": "",
 "TileZone": "",
 "TinyState": "",
 "ToolSpawnAssistant": "",
@@ -261,12 +297,18 @@ _global_script_class_icons={
 [application]
 
 config/name="2024, May 9: prose explorer."
-run/main_scene="res://MainProseXXI.tscn"
+run/main_scene="res://Stage.tscn"
 boot_splash/image="res://navdi/Resources/icon.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://navdi/Resources/icon.png"
 boot_splash/filter=false
+
+[autoload]
+
+PlayerStatus="*res://top_level/playerstatus.gd"
+Spellman="*res://top_level/spellman.gd"
+ArcadeScreenUtils="*res://arcade/ArcadeScreenUtils.gd"
 
 [display]
 
@@ -298,5 +340,4 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 1, 1, 1, 1 )
-environment/default_environment="res://default_env.tres"
 quality/2d/use_pixel_snap=true

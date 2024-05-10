@@ -1,0 +1,90 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://ArcadeScreen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://text_interface/text_interface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://top_level/spellman.gd" type="Script" id=3]
+[ext_resource path="res://top_level/flexgrid.gd" type="Script" id=4]
+[ext_resource path="res://navdi/Node Scripts/NavdiSettings.gd" type="Script" id=5]
+[ext_resource path="res://top_level/text_win_scale_matcher.gd" type="Script" id=6]
+[ext_resource path="res://navdi/Node Scripts/NavdiBanker.gd" type="Script" id=7]
+[ext_resource path="res://top_level/ViewportWrapperContainer.gd" type="Script" id=8]
+[ext_resource path="res://navdi/Node Scripts/Pin/PinController.gd" type="Script" id=9]
+[ext_resource path="res://text_interface/winf_input.tres" type="DynamicFont" id=10]
+[ext_resource path="res://text_interface/winf_output.tres" type="DynamicFont" id=11]
+[ext_resource path="res://navdi/Resources/icon.png" type="Texture" id=12]
+[ext_resource path="res://top_level/Stage.gd" type="Script" id=13]
+
+[node name="Stage" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 13 )
+
+[node name="pincontroller" type="Node" parent="." groups=["pincontroller"]]
+script = ExtResource( 9 )
+
+[node name="bank" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="settings" type="Node" parent="."]
+script = ExtResource( 5 )
+width = 400
+height = 240
+bg_color = Color( 1, 1, 1, 1 )
+project_month = "May"
+project_day = "9"
+project_name = "prose explorer"
+project_icon = ExtResource( 12 )
+stretch_pixel_art_to_edges = false
+
+[node name="spellman" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="m" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="flexgrid" type="GridContainer" parent="m"]
+margin_right = 400.0
+margin_bottom = 240.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 2
+script = ExtResource( 4 )
+
+[node name="matching" type="Container" parent="m/flexgrid"]
+margin_right = 200.0
+margin_bottom = 240.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 6 )
+scalablefont1 = ExtResource( 10 )
+scalablefont1_base_size = 16
+scalablefont2 = ExtResource( 11 )
+scalablefont2_base_size = 8
+scalable_margin_right = -10
+scalable_margin_bottom = -4
+
+[node name="text_interface" parent="m/flexgrid/matching" instance=ExtResource( 2 )]
+margin_right = 200.0
+margin_bottom = 214.0
+
+[node name="ViewportWrapperContainer" type="Container" parent="m/flexgrid"]
+margin_left = 200.0
+margin_right = 400.0
+margin_bottom = 240.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 8 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="m/flexgrid/ViewportWrapperContainer"]
+margin_top = 20.0
+margin_right = 200.0
+margin_bottom = 220.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="m/flexgrid/ViewportWrapperContainer/ViewportContainer"]
+size = Vector2( 200, 200 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="ArcadeScreen" parent="m/flexgrid/ViewportWrapperContainer/ViewportContainer/Viewport" instance=ExtResource( 1 )]

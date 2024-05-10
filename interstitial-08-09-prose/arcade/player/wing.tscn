@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://arcade/player/wing.gd" type="Script" id=1]
+[ext_resource path="res://arcade/player/eyes.gd" type="Script" id=2]
+[ext_resource path="res://navdi/Node Scripts/Pin/Pin.gd" type="Script" id=3]
+[ext_resource path="res://navdi/Node Scripts/Sheet/SheetSprite.gd" type="Script" id=4]
+[ext_resource path="res://media/beautiful_examiner.png" type="Texture" id=5]
+[ext_resource path="res://media/besheet.tres" type="Resource" id=6]
+[ext_resource path="res://arcade/player/eyes.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 3.5, 1.5 )
+
+[node name="wing" type="KinematicBody2D"]
+position = Vector2( 75, 167 )
+z_index = 20
+collision_layer = 512
+script = ExtResource( 1 )
+
+[node name="Pin" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="SheetSprite" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+hframes = 10
+vframes = 10
+frame = 34
+script = ExtResource( 4 )
+sprite_sheet = ExtResource( 6 )
+_frames = [ 34, 35 ]
+_frame_period = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, 1.5 )
+shape = SubResource( 4 )
+
+[node name="eyes" type="Area2D" parent="." instance=ExtResource( 7 )]
+collision_layer = 0
+collision_mask = 4096
+script = ExtResource( 2 )

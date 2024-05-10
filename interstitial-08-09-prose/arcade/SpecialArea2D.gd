@@ -2,9 +2,9 @@ tool
 extends Area2D
 class_name SpecialArea2D
 export (String, MULTILINE) var base_description : String
-const DYNAMIC_FONT = preload("res://level_tools/special_area_font.tres")
+const DYNAMIC_FONT = preload("special_area_font.tres")
 
-func _ready():
+func _enter_tree():
 	if Engine.editor_hint:
 		set_collision_layer_bit(0, false)
 		set_collision_mask_bit(0, false)
@@ -35,16 +35,20 @@ func _physics_process(_delta):
 		if has_node('label'):
 			$label.text = base_description
 
-func get_volume() -> float:
+func get_intensity() -> int:
 	if has_node('shape'):
 		var s = $shape.shape
 		if s is RectangleShape2D:
-			return s.extents.x * s.extents.y * 4.0
+			return int(
+				9999
+				- 10 * min(s.extents.x, s.extents.y)
+				-  1 * max(s.extents.x, s.extents.y)
+			)
 		else:
-			push_error("SpecialArea2D.gd cant calculate volume of nonrect shape")
-			return 100.0
+			push_error("SpecialArea2D.gd cant calculate intensity of nonrect shape")
+			return 100
 	else:
-		return 0.0
+		return 0
 
-func override_look():
+func get_look():
 	return base_description

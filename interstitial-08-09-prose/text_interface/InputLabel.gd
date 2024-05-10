@@ -62,7 +62,7 @@ func on_text_updated():
 
 func submit():
 	if input_text:
-		get_tree().call_group("SPELLMEN", "castspell", input_text)
+		Spellman.castspell(input_text)
 		input_text = ''
 		bufs.on(SUBMITBUF) # SUBMITTED.
 	else:
