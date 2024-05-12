@@ -17,6 +17,7 @@ const GAMEPAD_DEFAULT_DEADZONE = 0.1
 
 var stick : PinStick = PinStick.new()
 var a : PinButton = PinButton.new()
+var b : PinButton = PinButton.new()
 
 func _ready():
 	add_to_group("pincontroller")
@@ -41,7 +42,8 @@ func _input(event):
 			KEY_UP   : pin_keyboard.stick.pin_dpad(Vector2.UP,    event.pressed)
 			KEY_LEFT : pin_keyboard.stick.pin_dpad(Vector2.LEFT,  event.pressed)
 			KEY_DOWN : pin_keyboard.stick.pin_dpad(Vector2.DOWN,  event.pressed)
-			KEY_Z, KEY_X, KEY_SPACE: pin_keyboard.a.pin(event.pressed)
+			KEY_Z: pin_keyboard.a.pin(event.pressed)
+			KEY_X: pin_keyboard.b.pin(event.pressed)
 	if event is InputEventJoypadButton:
 		match event.button_index:
 			# it's not quite right to use 'keyboard' for these buttons
@@ -52,7 +54,8 @@ func _input(event):
 			14: pin_keyboard.stick.pin_dpad(Vector2.LEFT,  event.pressed)
 			15: pin_keyboard.stick.pin_dpad(Vector2.RIGHT, event.pressed)
 			# face buttons
-			0, 1, 2, 3: pin_gamepad.a.pin(event.pressed)
+			0, 1: pin_gamepad.a.pin(event.pressed)
+			2, 3: pin_gamepad.b.pin(event.pressed)
 	if event is InputEventJoypadMotion:
 		match event.axis:
 			0: pin_gamepad.stick.pin_axis(Vector2.RIGHT,  event.axis_value)
@@ -72,4 +75,9 @@ func _physics_process(_delta):
 	for pin in pins:
 		if pin.a.held:
 			a = pin.a
+			break
+	# "a" button
+	for pin in pins:
+		if pin.b.held:
+			b = pin.b
 			break

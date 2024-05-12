@@ -7,6 +7,7 @@ class_name PinInputSource
 
 var stick : PinStick = PinStick.new()
 var a : PinButton = PinButton.new()
+var b : PinButton = PinButton.new()
 
 #func register_activity(stick : Vector2, a : bool):
 #	active = true
@@ -20,3 +21,4 @@ func _physics_process(_delta):
 #			active = false
 	stick.call_deferred("end_frame")
 	a.call_deferred("end_frame")
+	b.call_deferred("end_frame")

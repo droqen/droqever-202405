@@ -4,8 +4,8 @@
 [ext_resource path="res://navdi/Node Scripts/NavdiBanker.gd" type="Script" id=2]
 [ext_resource path="res://navdi/Node Scripts/NavdiSettings.gd" type="Script" id=3]
 [ext_resource path="res://DemonDanceArcade.tscn" type="PackedScene" id=4]
+[ext_resource path="res://media/beautiful_demon10x10.png" type="Texture" id=5]
 [ext_resource path="res://navdi/Node Scripts/Pin/PinController.gd" type="Script" id=7]
-[ext_resource path="res://navdi/Resources/icon.png" type="Texture" id=8]
 
 [node name="XXI" type="MarginContainer"]
 anchor_right = 1.0
@@ -27,7 +27,7 @@ bg_color = Color( 0.270588, 0.0941176, 0.0941176, 1 )
 project_month = "May"
 project_day = "9"
 project_name = "DEMONDANCE"
-project_icon = ExtResource( 8 )
+project_icon = ExtResource( 5 )
 stretch_pixel_art_to_edges = false
 
 [node name="ViewportWrapperContainer" type="Container" parent="."]

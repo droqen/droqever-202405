@@ -262,10 +262,10 @@ _global_script_class_icons={
 
 config/name="2024, May 9: DEMONDANCE."
 run/main_scene="res://DemonDanceXXI.tscn"
-boot_splash/image="res://navdi/Resources/icon.png"
+boot_splash/image="res://media/beautiful_demon10x10.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.270588, 0.0941176, 0.0941176, 1 )
-config/icon="res://navdi/Resources/icon.png"
+config/icon="res://media/beautiful_demon10x10.png"
 boot_splash/filter=false
 
 [autoload]

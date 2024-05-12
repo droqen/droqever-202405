@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beautiful_demon.png-62a15a4c0f6873956347a6697327e777.stex"
+path="res://.import/beautiful_demon10x10.png-bb6b75bf8d1dce2dd8b7228e3a48985c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/beautiful_demon.png"
-dest_files=[ "res://.import/beautiful_demon.png-62a15a4c0f6873956347a6697327e777.stex" ]
+source_file="res://media/beautiful_demon10x10.png"
+dest_files=[ "res://.import/beautiful_demon10x10.png-bb6b75bf8d1dce2dd8b7228e3a48985c.stex" ]
 
 [params]
 
