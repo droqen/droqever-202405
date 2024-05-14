@@ -1,0 +1,290 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://media/garish.png" type="Texture" id=1]
+[ext_resource path="res://navdi/Node Scripts/NavdiBanker.gd" type="Script" id=2]
+[ext_resource path="res://navdi/Node Scripts/NavdiSettings.gd" type="Script" id=3]
+[ext_resource path="res://levels/level_hub_basic.tscn" type="PackedScene" id=4]
+[ext_resource path="res://media/garish10.png" type="Texture" id=5]
+[ext_resource path="res://navdi/Node Scripts/Pin/PinController.gd" type="Script" id=7]
+[ext_resource path="res://greyguy.gd" type="Script" id=9]
+[ext_resource path="res://navdi/Node Scripts/Sheet/SheetSprite.gd" type="Script" id=10]
+[ext_resource path="res://navdi/Node Scripts/Pin/Pin.gd" type="Script" id=11]
+[ext_resource path="res://media/garisheet.tres" type="Resource" id=12]
+[ext_resource path="res://examiner.gd" type="Script" id=13]
+[ext_resource path="res://navdi/Resources/fonts/tallten.tres" type="DynamicFont" id=14]
+[ext_resource path="res://dialogbox_small.gd" type="Script" id=15]
+[ext_resource path="res://NbhXXI.gd" type="Script" id=16]
+[ext_resource path="res://navdi/Node Scripts/Convo/MarchingTextContainer.gd" type="Script" id=18]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 3, 4 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 1, 1 )
+
+[node name="XXI" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 16 )
+
+[node name="pincontroller" type="Node" parent="." groups=["pincontroller"]]
+script = ExtResource( 7 )
+
+[node name="bank" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="settings" type="Node" parent="."]
+script = ExtResource( 3 )
+width = 200
+height = 200
+bg_color = Color( 0, 0.0666667, 0.2, 1 )
+project_month = "May"
+project_day = "13"
+project_name = "the stone speaks"
+project_icon = ExtResource( 5 )
+
+[node name="arcade" type="Node2D" parent="."]
+pause_mode = 1
+
+[node name="levelloader" type="Node2D" parent="arcade"]
+
+[node name="level_hub_basic" parent="arcade/levelloader" instance=ExtResource( 4 )]
+
+[node name="greyguy" type="KinematicBody2D" parent="arcade"]
+position = Vector2( 73, 105 )
+script = ExtResource( 9 )
+
+[node name="Pin" type="Node" parent="arcade/greyguy"]
+script = ExtResource( 11 )
+
+[node name="SheetSprite" type="Sprite" parent="arcade/greyguy"]
+texture = ExtResource( 1 )
+hframes = 10
+vframes = 10
+frame = 10
+script = ExtResource( 10 )
+sprite_sheet = ExtResource( 12 )
+_frames = [ 10, 11 ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arcade/greyguy"]
+position = Vector2( 0, 1 )
+shape = SubResource( 4 )
+
+[node name="examiner" type="Area2D" parent="arcade/greyguy"]
+position = Vector2( 0, 1 )
+collision_layer = 0
+collision_mask = 64
+script = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arcade/greyguy/examiner"]
+shape = SubResource( 6 )
+
+[node name="indicator" type="Sprite" parent="arcade/greyguy/examiner"]
+position = Vector2( -3, -12 )
+texture = ExtResource( 1 )
+hframes = 10
+vframes = 10
+frame = 9
+script = ExtResource( 10 )
+sprite_sheet = ExtResource( 12 )
+_frames = [ 9 ]
+
+[node name="dialogbox_small" type="Node2D" parent="."]
+pause_mode = 1
+visible = false
+script = ExtResource( 15 )
+
+[node name="m" type="MarginContainer" parent="dialogbox_small"]
+margin_right = 200.0
+margin_bottom = 60.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="ColorRect" type="ColorRect" parent="dialogbox_small/m"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 195.0
+margin_bottom = 55.0
+color = Color( 0.635294, 0.635294, 0.635294, 1 )
+
+[node name="m" type="MarginContainer" parent="dialogbox_small/m"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 195.0
+margin_bottom = 55.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 4
+
+[node name="ColorRect2" type="ColorRect" parent="dialogbox_small/m/m"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 188.0
+margin_bottom = 46.0
+color = Color( 0, 0.0666667, 0.2, 1 )
+
+[node name="MarchingText" type="MarginContainer" parent="dialogbox_small/m/m"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 188.0
+margin_bottom = 46.0
+custom_constants/margin_right = -2
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+script = ExtResource( 18 )
+bbcode_text = "Hem
+aoslda
+sdloasldo
+asldo
+aslod
+asldo
+akso
+jj
+kk"
+delay_per_char = 0.02
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialogbox_small/m/m/MarchingText"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 188.0
+margin_bottom = 44.0
+custom_colors/default_color = Color( 0.635294, 0.635294, 0.635294, 1 )
+custom_fonts/normal_font = ExtResource( 14 )
+bbcode_text = "Hem
+aoslda
+sdloasldo
+asldo
+aslod
+asldo
+akso
+jj
+kk"
+text = "Hem
+aoslda
+sdloasldo
+asldo
+aslod
+asldo
+akso
+jj
+kk"
+scroll_active = false
+scroll_following = true
+
+[node name="Pin" type="Node" parent="dialogbox_small"]
+script = ExtResource( 11 )
+
+[node name="indicator" type="Sprite" parent="dialogbox_small"]
+position = Vector2( 185, 43 )
+texture = ExtResource( 1 )
+hframes = 10
+vframes = 10
+frame = 9
+script = ExtResource( 10 )
+sprite_sheet = ExtResource( 12 )
+_frames = [ 9 ]
+
+[node name="dialogbox_full" type="Node2D" parent="."]
+pause_mode = 1
+visible = false
+script = ExtResource( 15 )
+
+[node name="m" type="MarginContainer" parent="dialogbox_full"]
+margin_top = 60.0
+margin_right = 200.0
+margin_bottom = 140.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="ColorRect" type="ColorRect" parent="dialogbox_full/m"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 195.0
+margin_bottom = 75.0
+color = Color( 0.635294, 0.635294, 0.635294, 1 )
+
+[node name="m" type="MarginContainer" parent="dialogbox_full/m"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 195.0
+margin_bottom = 75.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 4
+
+[node name="ColorRect2" type="ColorRect" parent="dialogbox_full/m/m"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 188.0
+margin_bottom = 66.0
+color = Color( 0, 0.0666667, 0.2, 1 )
+
+[node name="MarchingText" type="MarginContainer" parent="dialogbox_full/m/m"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 188.0
+margin_bottom = 66.0
+custom_constants/margin_right = -2
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+script = ExtResource( 18 )
+bbcode_text = "Hem
+aoslda
+sdloasldo
+asldo
+aslod
+asldo
+akso
+jj
+kk"
+delay_per_char = 0.04
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialogbox_full/m/m/MarchingText"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 188.0
+margin_bottom = 64.0
+custom_colors/default_color = Color( 0.635294, 0.635294, 0.635294, 1 )
+custom_fonts/normal_font = ExtResource( 14 )
+bbcode_text = "Hem
+aoslda
+sdloasldo
+asldo
+aslod
+asldo
+akso
+jj
+kk"
+text = "Hem
+aoslda
+sdloasldo
+asldo
+aslod
+asldo
+akso
+jj
+kk"
+scroll_active = false
+scroll_following = true
+
+[node name="Pin" type="Node" parent="dialogbox_full"]
+script = ExtResource( 11 )
+
+[node name="indicator" type="Sprite" parent="dialogbox_full"]
+position = Vector2( 185, 123 )
+texture = ExtResource( 1 )
+hframes = 10
+vframes = 10
+frame = 9
+script = ExtResource( 10 )
+sprite_sheet = ExtResource( 12 )
+_frames = [ 9 ]
+
+[connection signal="read" from="arcade/greyguy" to="." method="_on_greyguy_read"]
+[connection signal="exited" from="dialogbox_small" to="." method="_on_dialogbox_small_exited"]
+[connection signal="exited" from="dialogbox_full" to="." method="_on_dialogbox_small_exited"]
